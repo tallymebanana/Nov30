@@ -1,0 +1,215 @@
+
+Music https://www.youtube.com/watch?v=lz0Xb55xdb4
+Mario sounds https://www.youtube.com/watch?v=OFP_0Zihaio
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beat the Chasers Timer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white; /* Set background color to white */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .timer-container {
+            display: flex;
+            gap: 30px;
+            height: 100vh;
+            align-items: center;
+        }
+
+        .timer-box {
+            position: relative;
+            width: 200px;
+            height: 100%;
+            border: 8px solid;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 50px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        #player-timer {
+            border-color: #007FFF; /* Bright blue border */
+        }
+
+        #chasers-timer {
+            border-color: #FF0000; /* Bright red border */
+        }
+
+        .timer-content {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            transition: height 1s linear;
+            background-color: inherit;
+        }
+
+        #player-content {
+            background-color: #007FFF; /* Bright blue countdown bar */
+        }
+
+        #chasers-content {
+            background-color: #FF0000; /* Bright red countdown bar */
+        }
+
+        .label {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 30px;
+            z-index: 2;
+            text-transform: uppercase;
+            color: #0074D9; /* Royal Blue for labels */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .timer {
+            font-size: 80px;
+            z-index: 3;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Strong shadow for clarity */
+        }
+
+        .center-image {
+            width: 150px; /* Adjust size as needed */
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <div id="player-timer" class="timer-box">
+            <div class="label" id="player-label">Shaun</div>
+            <div id="player-content" class="timer-content" style="height: 100%;"></div>
+            <div id="player-time" class="timer">60</div>
+        </div>
+
+        <!-- Center image -->
+        <img src="https://www.jotform.com/uploads/Edel_Kennedy/form_files/flying_fifteen_ireland.6731dc3385b2f5.21521112.png" alt="Flying Fifteen Ireland" class="center-image">
+
+        <div id="chasers-timer" class="timer-box">
+            <div class="label" id="chasers-label">Chasers</div>
+            <div id="chasers-content" class="timer-content" style="height: 75%;"></div>
+            <div id="chasers-time" class="timer">45</div>
+        </div>
+    </div>
+
+    <script>
+        // Configurable variables
+        const playerName = 'Shaun';
+        const chasersName = 'Chasers';
+        const playerStartTime = 60;  // Start time for player in seconds
+        const chasersStartTime = 45; // Start time for chasers in seconds
+        const keyStartPlayer = 's';
+        const keyStartChasers = 'c';
+        const keyToggleTimers = 't';
+        const keyResetTimers = 'r';
+        const keyStopAllTimers = 'p';
+
+        // Timer state variables
+        let playerTime = playerStartTime;
+        let chasersTime = chasersStartTime;
+        let activeTimer = null;
+        let currentTimer = 'player';
+
+        // Set initial names and times
+        document.getElementById('player-label').innerText = playerName;
+        document.getElementById('chasers-label').innerText = chasersName;
+        document.getElementById('player-time').innerText = playerTime;
+        document.getElementById('chasers-time').innerText = chasersTime;
+        document.getElementById('chasers-content').style.height = `${(chasersTime / playerStartTime) * 100}%`;
+
+        function updateContentHeight(timerId, timeRemaining, totalTime) {
+            const content = document.getElementById(timerId);
+            const heightPercentage = (timeRemaining / totalTime) * 100;
+            content.style.height = `${heightPercentage}%`;
+        }
+
+        function startPlayerTimer() {
+            stopTimers();
+            activeTimer = setInterval(() => {
+                if (playerTime > 0) {
+                    playerTime--;
+                    document.getElementById('player-time').innerText = playerTime;
+                    updateContentHeight('player-content', playerTime, playerStartTime);
+                } else {
+                    clearInterval(activeTimer);
+                }
+            }, 1000);
+            currentTimer = 'player';
+        }
+
+        function startChasersTimer() {
+            stopTimers();
+            activeTimer = setInterval(() => {
+                if (chasersTime > 0) {
+                    chasersTime--;
+                    document.getElementById('chasers-time').innerText = chasersTime;
+                    updateContentHeight('chasers-content', chasersTime, playerStartTime);
+                } else {
+                    clearInterval(activeTimer);
+                }
+            }, 1000);
+            currentTimer = 'chasers';
+        }
+
+        function stopTimers() {
+            clearInterval(activeTimer);
+            activeTimer = null;
+        }
+
+        function toggleTimers() {
+            if (currentTimer === 'player') {
+                startChasersTimer();
+            } else {
+                startPlayerTimer();
+            }
+        }
+
+        function resetTimers() {
+            stopTimers();
+            playerTime = playerStartTime;
+            chasersTime = chasersStartTime;
+            document.getElementById('player-time').innerText = playerTime;
+            document.getElementById('chasers-time').innerText = chasersTime;
+            updateContentHeight('player-content', playerTime, playerStartTime);
+            updateContentHeight('chasers-content', chasersTime, playerStartTime);
+            currentTimer = 'player';
+        }
+
+        function stopAllTimers() {
+            stopTimers();
+            console.log("All timers stopped");
+        }
+
+        // Event listeners for starting, stopping, toggling, and resetting timers
+        document.addEventListener('keypress', (e) => {
+            if (e.key === keyStartPlayer) startPlayerTimer();
+            if (e.key === keyStartChasers) startChasersTimer();
+            if (e.key === keyToggleTimers) toggleTimers();
+            if (e.key === keyResetTimers) resetTimers();
+            if (e.key === keyStopAllTimers) stopAllTimers();
+        });
+    </script>
+</body>
+</html>
