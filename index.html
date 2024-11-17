@@ -1,6 +1,6 @@
 
-Music https://www.youtube.com/watch?v=lz0Xb55xdb4
-Mario sounds https://www.youtube.com/watch?v=OFP_0Zihaio
+##Music https://www.youtube.com/watch?v=lz0Xb55xdb4
+##Mario sounds https://www.youtube.com/watch?v=OFP_0Zihaio
 
 
 <!DOCTYPE html>
@@ -23,14 +23,15 @@ Mario sounds https://www.youtube.com/watch?v=OFP_0Zihaio
 
         .timer-container {
             display: flex;
-            gap: 30px;
-            height: 100vh;
+            justify-content: space-evenly; /* Evenly distribute items */
             align-items: center;
+            width: 100%; /* Take full screen width */
+            height: 100%; /* Full height */
         }
 
         .timer-box {
             position: relative;
-            width: 200px;
+            width: 20%; /* Timer width takes 20% of the screen */
             height: 100%;
             border: 8px solid;
             border-radius: 10px;
@@ -91,7 +92,7 @@ Mario sounds https://www.youtube.com/watch?v=OFP_0Zihaio
         }
 
         .center-image {
-            width: 150px; /* Adjust size as needed */
+            width: 15%; /* Adjust size as needed */
             align-self: center;
         }
     </style>
@@ -116,7 +117,7 @@ Mario sounds https://www.youtube.com/watch?v=OFP_0Zihaio
 
     <script>
         // Configurable variables
-        const playerName = 'Seconds';
+        const playerName = 'Shaun';
         const chasersName = 'Chasers';
         const playerStartTime = 60;  // Start time for player in seconds
         const chasersStartTime = 45; // Start time for chasers in seconds
