@@ -1,8 +1,3 @@
-
-Music https://www.youtube.com/watch?v=lz0Xb55xdb4
-Mario sounds https://www.youtube.com/watch?v=OFP_0Zihaio
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,14 +18,15 @@ Mario sounds https://www.youtube.com/watch?v=OFP_0Zihaio
 
         .timer-container {
             display: flex;
-            gap: 30px;
-            height: 100vh;
+            justify-content: space-between; /* Distribute timers and image evenly */
             align-items: center;
+            width: 90%; /* Use most of the screen width */
+            height: 100vh;
         }
 
         .timer-box {
             position: relative;
-            width: 200px;
+            width: 20%; /* Take up 20% of screen width for larger timers */
             height: 100%;
             border: 8px solid;
             border-radius: 10px;
@@ -91,7 +87,7 @@ Mario sounds https://www.youtube.com/watch?v=OFP_0Zihaio
         }
 
         .center-image {
-            width: 150px; /* Adjust size as needed */
+            width: 15%; /* Adjust size as needed */
             align-self: center;
         }
     </style>
