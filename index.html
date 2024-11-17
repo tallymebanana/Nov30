@@ -2,7 +2,6 @@
 ##Music https://www.youtube.com/watch?v=lz0Xb55xdb4
 ##Mario sounds https://www.youtube.com/watch?v=OFP_0Zihaio
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,38 +18,41 @@
             align-items: center;
             height: 100vh;
             color: white;
+            overflow: hidden; /* Prevent scrollbars */
         }
 
         .timer-container {
             display: flex;
-            justify-content: space-evenly; /* Evenly distribute items */
+            justify-content: space-between; /* Left-align first timer, right-align second */
             align-items: center;
-            width: 100%; /* Take full screen width */
+            width: 100%; /* Stretch across the full screen */
             height: 100%; /* Full height */
+            padding: 0 2%; /* Add padding on the left and right */
         }
 
         .timer-box {
             position: relative;
-            width: 20%; /* Timer width takes 20% of the screen */
-            height: 100%;
+            width: 25%; /* Timer width takes a quarter of the screen */
+            height: 90%; /* Timers take most of the screen height */
             border: 8px solid;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             color: white;
             font-weight: bold;
             font-size: 50px;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.4); /* Add glow */
         }
 
         #player-timer {
-            border-color: #007FFF; /* Bright blue border */
+            border-image: linear-gradient(to bottom, #007FFF, #00BFFF) 1; /* Gradient blue border */
         }
 
         #chasers-timer {
-            border-color: #FF0000; /* Bright red border */
+            border-image: linear-gradient(to bottom, #FF4500, #FF6347) 1; /* Gradient red border */
         }
 
         .timer-content {
@@ -62,11 +64,11 @@
         }
 
         #player-content {
-            background-color: #007FFF; /* Bright blue countdown bar */
+            background: linear-gradient(to top, #007FFF, #00BFFF); /* Gradient blue countdown bar */
         }
 
         #chasers-content {
-            background-color: #FF0000; /* Bright red countdown bar */
+            background: linear-gradient(to top, #FF4500, #FF6347); /* Gradient red countdown bar */
         }
 
         .label {
@@ -81,6 +83,10 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
+        #chasers-label {
+            color: #FF4500; /* Bright red for the chasers label */
+        }
+
         .timer {
             font-size: 80px;
             z-index: 3;
@@ -92,7 +98,7 @@
         }
 
         .center-image {
-            width: 15%; /* Adjust size as needed */
+            width: 10%; /* Adjust size as needed */
             align-self: center;
         }
     </style>
