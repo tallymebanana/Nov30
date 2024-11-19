@@ -23,17 +23,16 @@
 
         .timer-container {
             display: flex;
-            justify-content: space-between; /* Left-align first timer, right-align second */
+            justify-content: space-around; /* Evenly distribute items */
             align-items: center;
-            width: 100%; /* Stretch across the full screen */
+            width: 100%; /* Use the full screen width */
             height: 100%; /* Full height */
-            padding: 0 2%; /* Add padding on the left and right */
         }
 
         .timer-box {
             position: relative;
-            width: 25%; /* Timer width takes a quarter of the screen */
-            height: 90%; /* Timers take most of the screen height */
+            width: 30%; /* Increase width to occupy more screen */
+            height: 80%; /* Make timers taller */
             border: 8px solid;
             border-radius: 15px;
             overflow: hidden;
@@ -76,7 +75,7 @@
             top: 10px;
             width: 100%;
             text-align: center;
-            font-size: 30px;
+            font-size: 40px; /* Larger label text */
             z-index: 2;
             text-transform: uppercase;
             color: #0074D9; /* Royal Blue for labels */
@@ -88,7 +87,7 @@
         }
 
         .timer {
-            font-size: 80px;
+            font-size: 100px; /* Larger timer numbers */
             z-index: 3;
             position: absolute;
             top: 50%;
@@ -98,7 +97,7 @@
         }
 
         .center-image {
-            width: 10%; /* Adjust size as needed */
+            width: 20%; /* Make the center image larger */
             align-self: center;
         }
     </style>
@@ -123,7 +122,7 @@
 
     <script>
         // Configurable variables
-        const playerName = 'Shaun';
+        const playerName = 'Victim';
         const chasersName = 'Chasers';
         const playerStartTime = 60;  // Start time for player in seconds
         const chasersStartTime = 45; // Start time for chasers in seconds
